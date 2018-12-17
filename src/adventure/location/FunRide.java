@@ -1,6 +1,6 @@
 package adventure.location;
 
-
+//This class includes the special location FunRide, where the player can get FunPoints if he rides.
 public class FunRide extends Location {
 
     private final double COST;

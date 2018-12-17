@@ -1,5 +1,7 @@
 package adventure.location;
 
+
+//This class includes the special location Facility, where the player can get EnergyPoints if he rests.
 public class Facility extends Location {
 
     private final double COST;

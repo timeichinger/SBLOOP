@@ -59,6 +59,7 @@ public class Location {
         return whereCanHeGo;
     }
 
+    //This method returns true, when the name of the locations are equal.
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {

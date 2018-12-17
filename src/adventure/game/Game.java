@@ -11,6 +11,7 @@ import adventure.location.Location;
 
 import java.util.Scanner;
 
+//This class executes the program and handles inputs from the user
 public class Game {
 
     public static Scanner scanner;
@@ -93,8 +94,11 @@ public class Game {
         }
     }
 
-    //This method checks if the inputed word is an allowed word
+    //This method checks if the entered word is an allowed word
     private static boolean isAllowedWord(String word) {
+
+        //the if condition returns true, the neighboring location is not null.
+        //In the last two conditions, the program checks, if the user input ride or rest is at the current location a valid word.
         if (word.equals("up") && player.getCurrentLocation().getNeighboringLocation("up") != null) {
             return true;
         } else if (word.equals("down") && player.getCurrentLocation().getNeighboringLocation("down") != null) {

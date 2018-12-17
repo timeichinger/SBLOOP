@@ -78,6 +78,7 @@ public class Player {
         }
     }
 
+    //This method handles the case, when the game ends
     public void gameOver(Location location) {
         currentLocation = location;
         funPoints = 0;
