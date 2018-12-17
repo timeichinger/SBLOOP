@@ -1,7 +1,8 @@
-package adventure.game;/*
+package adventure.game;
+/*
  * OOP - WS1819 - SBL 1
  * Tim Eichinger (2049889)
- * Vorname Nachname (Matrikelnr.)
+ * Jakob Kessler (2110006)
  */
 
 import adventure.location.Facility;
@@ -84,7 +85,7 @@ public class Game {
     private static void handleGameExit(Location location) {
         if (player.getEnergy() >= 0) {
             System.out.println("You are here now: Parking Lot");
-            System.out.println("Congratulations, you made it.");
+            System.out.println(String.format("Congratulations, you made it. You have collected %d fun points and have %.2f \u20ac.", player.getFunPoints(), player.getMoney()));
         } else {
             player.gameOver(location);
             System.out.println("Game over. You collapse exhausted and the park inspector must carry you out of the park.");
