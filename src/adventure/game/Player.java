@@ -16,14 +16,15 @@ public class Player {
 
     private static final int MAX_ENERGY = 200;
     private static final int MIN_ENERGY = 60;
-
-
     private static final int ENERGY_POINTS_COST_RIDE = 5;
+    private static final double MAX_MONEY = 50.00;
+    private static final int WALK_ENERGY_COST = 10;
+
     public Player(Location startLocation) {
         this.currentLocation = startLocation;
         funPoints = 0;
         energy = randomGenerator.nextInt((MAX_ENERGY-MIN_ENERGY) + 1) + MIN_ENERGY;
-        money = randomGenerator.nextDouble()*50.00;
+        money = randomGenerator.nextDouble()*MAX_MONEY;
     }
 
     public double getMoney() {
@@ -45,24 +46,35 @@ public class Player {
     }
 
     public void walk(String direction) {
-        energy -= 10;
+        energy -= WALK_ENERGY_COST;
         currentLocation = currentLocation.getNeighboringLocation(direction);
     }
 
+    //This method handles when the player wants to stay at the current location
     public void stay() {
         if (currentLocation.getClass().equals(FunRide.class)) {
             FunRide funRide = (FunRide) currentLocation;
-            if (funRide.getCOST() <= getMoney()) {
-                money -= funRide.getCOST();
-                energy -= ENERGY_POINTS_COST_RIDE;
-                funPoints += funRide.getFUN_POINTS();
-            }
+            handleRide(funRide);
         } else {
             Facility facility = (Facility) currentLocation;
-            if (facility.getCOST() <= getMoney()) {
-                money -= facility.getCOST();
-                energy += facility.getENERGY_POINTS();
-            }
+            handleRest(facility);
+        }
+    }
+
+    //This method handles the case when the player wants to rest at the passed location
+    private void handleRest(Facility facility) {
+        if (facility.getCOST() <= getMoney()) {
+            money -= facility.getCOST();
+            energy += facility.getENERGY_POINTS();
+        }
+    }
+
+    //This method handles the case when the player wants to ride at the passed location
+    private void handleRide(FunRide funRide) {
+        if (funRide.getCOST() <= getMoney()) {
+            money -= funRide.getCOST();
+            energy -= ENERGY_POINTS_COST_RIDE;
+            funPoints += funRide.getFUN_POINTS();
         }
     }
 

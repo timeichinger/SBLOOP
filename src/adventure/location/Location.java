@@ -20,6 +20,7 @@ public class Location {
         return name;
     }
 
+    //This method returns the Neighboring Location in the given direction
     public Location getNeighboringLocation(String direction) {
         switch (direction) {
             case "up":
@@ -40,6 +41,9 @@ public class Location {
     @Override
     public String toString() {
         String whereCanHeGo = getName() + ". You can go: ";
+
+        //These if conditions check in which directions the player can go and then add them to the string whereCanHeGo.
+
         if (leftLocation!=null) {
             whereCanHeGo += "left ";
         }
@@ -70,6 +74,8 @@ public class Location {
         return this.name.equals(location.name);
     }
 
+    //In the createPath method, a path is created between this location and the passed location.
+    //The path is created in both passed direction and opposite direction
     public void createPath(String direction, Location location) {
         switch (direction) {
             case "up":
